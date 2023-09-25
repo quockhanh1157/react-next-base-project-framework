@@ -1,0 +1,16 @@
+{
+  "Index": {
+    "title": "Xin chao!"
+  },
+  "LocaleLayout": {
+    "title": "title vi"
+  },
+  "Error": {
+    "title": "Something went wrong!",
+    "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>"
+  },
+  "LocaleSwitcher": {
+    "label": "Language: ",
+    "locale": "{locale, select, vi {Vietnam} en {English} other {Unknown}}"
+  }
+}

@@ -1,12 +1,15 @@
 'use client'
 import React from 'react';
-import styles from '@/styles/layout.module.scss'
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import Image from "next/image";
+import LocaleSwitcher from "@/components/LocaleSwitcher";
+import {useLocale} from "next-intl";
+import styles from '@/styles/layout.module.scss'
 
 const HeaderLayout = () => {
   const pathname = usePathname()
+  const locale = useLocale()
 
   return (
     <header className={styles.header}>
@@ -16,14 +19,15 @@ const HeaderLayout = () => {
             <Image className={styles.header_icon} width={50} height={50} src={'/icon-react.png'} alt={'icon'}/>
           </Link></label>
 
-          <input className={styles.header_input} type={"checkbox"} id={'box'}/>
+          <input className={styles.header_input} type={`checkbox`} id={'box'}/>
           <nav className={styles.header_nav}>
             <ul>
-              <li><Link className={pathname == "/facebook" ? styles.active : ""} href={'/facebook'}>Facebook</Link>
+              <li><Link className={pathname == `/${locale}/facebook` ? styles.active : ``} href={`/${locale}/facebook`}>Facebook</Link>
               </li>
-              <li><Link className={pathname == "/tiktok" ? styles.active : ""} href={'/tiktok'}>Tiktok</Link></li>
-              <li><Link className={pathname == "/speak" ? styles.active : ""} href={'/speak'}>Speak</Link></li>
-              <li><Link className={pathname == "/test-found" ? styles.active : ""} href={'/test-found'}>Test Found</Link></li>
+              <li><Link className={pathname == `/${locale}/tiktok` ? styles.active : ``} href={`/${locale}/tiktok`}>Tiktok</Link></li>
+              <li><Link className={pathname == `/${locale}/speak` ? styles.active : ``} href={`/${locale}/speak`}>Speak</Link></li>
+              <li><Link className={pathname == `/${locale}/test-found` ? styles.active : ``} href={`/${locale}/test-found`}>Test Found</Link></li>
+              <LocaleSwitcher/>
             </ul>
           </nav>
         </div>
@@ -34,6 +38,7 @@ const HeaderLayout = () => {
             <hr/>
           </label>
         </div>
+
       </div>
     </header>
   );
