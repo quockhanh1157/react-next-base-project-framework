@@ -14,4 +14,4 @@ npm install next-intl
 #### when click to home, default open /en
 ### 2. move layout to [locale]
 ### 3. create not-found show page error
-### 4. dynamic router
+### 4. dynamic router (unfulfilled)
