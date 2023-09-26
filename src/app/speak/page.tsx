@@ -1,6 +1,6 @@
 'use client'
 import React, {useState} from 'react';
-import styles from '@/styles/speak.module.scss'
+import styles from '@/app/styles/speak.module.scss'
 
 const Speak = () => {
   const [msg, setMsg] = useState<string>("")

@@ -2,9 +2,10 @@ import './globals.css';
 import type {Metadata} from 'next';
 import {Inter} from 'next/font/google';
 import React from 'react';
-import HeaderLayout from "@/components/HeaderLayout";
-import FooterLayout from "@/components/FooterLayout";
-import styles from '@/styles/layout.module.scss'
+import HeaderLayout from "@/app/components/HeaderLayout";
+import FooterLayout from "@/app/components/FooterLayout";
+import styles from '@/app/styles/layout.module.scss'
+import AuthProvider from "@/app/context/AuthProvider";
 
 const inter = Inter({subsets: ['latin']});
 
@@ -21,11 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body className={inter.className}>
+        <AuthProvider>
           <HeaderLayout/>
           <div className={styles.container}>
             {children}
           </div>
           <FooterLayout/>
+        </AuthProvider>
       </body>
     </html>
   );

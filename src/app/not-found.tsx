@@ -7,7 +7,7 @@ export default function NotFound() {
 
   return (
     <div>
-      <p>NotFoundPage</p>
+      <p>Not Found Page custom</p>
     </div>
   );
 }
