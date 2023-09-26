@@ -2,9 +2,10 @@ import {Inter} from 'next/font/google';
 import {notFound} from 'next/navigation';
 import {createTranslator, NextIntlClientProvider} from 'next-intl';
 import {ReactNode} from 'react';
-import HeaderLayout from "@/components/HeaderLayout";
-import FooterLayout from "@/components/FooterLayout";
-import styles from '@/styles/layout.module.scss'
+import HeaderLayout from "@/app/components/HeaderLayout";
+import FooterLayout from "@/app/components/FooterLayout";
+import styles from '@/app/styles/layout.module.scss'
+import AuthProvider from "@/app/context/AuthProvider";
 
 const inter = Inter({subsets: ['latin']});
 
@@ -22,7 +23,7 @@ async function getMessages(locale: string) {
 }
 
 export async function generateStaticParams() {
-  return ['en', 'de'].map((locale) => ({locale}));
+  return ['en', 'vi'].map((locale) => ({locale}));
 }
 
 export async function generateMetadata({params: {locale}}: Props) {
@@ -46,13 +47,15 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning={true}>
-      <body style={{margin:0}}>
+      <body style={{margin: 0}}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <HeaderLayout/>
-          <div className={styles.container}>
-            {children}
-          </div>
-          <FooterLayout/>
+          <AuthProvider>
+            <HeaderLayout/>
+            <div className={styles.container}>
+              {children}
+            </div>
+            <FooterLayout/>
+          </AuthProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -1,4 +1,3 @@
-import './globals.css';
 import type {Metadata} from 'next';
 import {Inter} from 'next/font/google';
 import React from 'react';
@@ -21,15 +20,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body className={inter.className}>
-        <AuthProvider>
-          <HeaderLayout/>
-          <div className={styles.container}>
+      {/*<body className={inter.className}>*/}
+      {/*  <AuthProvider>*/}
+      {/*    <HeaderLayout/>*/}
+      {/*    <div className={styles.container}>*/}
             {children}
-          </div>
-          <FooterLayout/>
-        </AuthProvider>
-      </body>
+      {/*    </div>*/}
+      {/*    <FooterLayout/>*/}
+      {/*  </AuthProvider>*/}
+      {/*</body>*/}
     </html>
   );
 }
