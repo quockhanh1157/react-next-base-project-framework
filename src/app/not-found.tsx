@@ -6,8 +6,10 @@
 export default function NotFound() {
 
   return (
-    <div>
-      <p>Not Found Page custom</p>
-    </div>
+    <html lang="en">
+      <body>
+        <Error statusCode={404} />
+      </body>
+    </html>
   );
 }

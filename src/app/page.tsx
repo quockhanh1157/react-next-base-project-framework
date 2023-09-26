@@ -1,17 +1,6 @@
-import { options } from "./api/auth/[...nextauth]/options"
-import { getServerSession } from "next-auth/next"
-import UserCard from "./components/UserCard"
+import {redirect} from 'next/navigation';
 
-export default async function Home() {
-  const session = await getServerSession(options)
-
-  return (
-    <>
-      {session ? (
-        <UserCard user={session?.user} pagetype={"Home"} />
-      ) : (
-        <h1 className="text-5xl">You Shall Not Pass!</h1>
-      )}
-    </>
-  )
+// This page only renders when the app is built statically (output: 'export')
+export default function RootPage() {
+  redirect('/en');
 }
