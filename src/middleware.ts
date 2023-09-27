@@ -4,7 +4,7 @@ import createIntlMiddleware from 'next-intl/middleware';
 
 const locales = ['en', 'vi'];
 const publicPages = [
-  '/',
+  '/', '/login'
   // (/secret requires auth)
 ];
 
@@ -22,9 +22,6 @@ const authMiddleware = withAuth(
     callbacks: {
       authorized: ({token}) => token != null
     },
-    // pages: {
-    //   signIn: '/login'
-    // }
   }
 );
 
@@ -41,7 +38,6 @@ export default function middleware(req: NextRequest) {
     return (authMiddleware as any)(req);
   }
 }
-
 export const config = {
   matcher: ['/(.+)?/tiktok']
 };

@@ -2,17 +2,18 @@
 import React from 'react';
 import styles from '@/app/styles/layout.module.scss'
 import Link from "next/link";
-import {usePathname} from "next/navigation";
 import Image from "next/image";
 import NavBar from "@/app/components/NavBar";
+import {useLocale} from "next-intl";
 
 const HeaderLayout = () => {
+  const locale = useLocale()
 
   return (
     <header className={styles.header}>
       <div className={`${styles.header_container} ${styles.container}`}>
         <div>
-          <label><Link href={'/'}>
+          <label><Link href={`/${locale}`}>
             <Image className={styles.header_icon} width={50} height={50} src={'/icon-react.png'} alt={'icon'}/>
           </Link></label>
 
