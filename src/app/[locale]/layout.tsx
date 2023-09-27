@@ -5,6 +5,8 @@ import {ReactNode} from 'react';
 import HeaderLayout from "@/components/HeaderLayout";
 import FooterLayout from "@/components/FooterLayout";
 import styles from '@/styles/layout.module.scss'
+import {createClient} from "@/prismicio";
+import {Metadata} from "next";
 
 const inter = Inter({subsets: ['latin']});
 
@@ -21,21 +23,23 @@ async function getMessages(locale: string) {
   }
 }
 
-export async function generateStaticParams() {
-  return ['en', 'de'].map((locale) => ({locale}));
-}
+export async function generateMetadata({params: {locale}}: Props): Promise<Metadata> {
 
-export async function generateMetadata({params: {locale}}: Props) {
+  const client = createClient()
+
+  const page = await client.getSingle("settings")
+
+
+
   const messages = await getMessages(locale);
-
-  // You can use the core (non-React) APIs when you have to use next-intl
-  // outside of components. Potentially this will be simplified in the future
-  // (see https://next-intl-docs.vercel.app/docs/next-13/server-components).
   const t = createTranslator({locale, messages});
-
   return {
-    title: t('LocaleLayout.title')
-  };
+    title: page?.data.site_title || t('LocaleLayout.title'),
+    description:page?.data.meta_description || "Description default",
+    openGraph: {
+      images: [page?.data.og_image.url || ""],
+    },
+  }
 }
 
 export default async function LocaleLayout({
@@ -46,7 +50,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning={true}>
-      <body style={{margin:0}}>
+      <body style={{margin: 0}}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <HeaderLayout/>
           <div className={styles.container}>
