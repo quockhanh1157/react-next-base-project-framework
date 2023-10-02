@@ -33,18 +33,17 @@
         "config": {
           "label": "Navigation",
           "fields": {
-            "link": {
-              "type": "Link",
-              "config": {
-                "label": "Link",
-                "placeholder": "",
-                "select": null
-              }
-            },
             "label": {
               "type": "Text",
               "config": {
                 "label": "Label",
+                "placeholder": ""
+              }
+            },
+            "endpoint": {
+              "type": "Text",
+              "config": {
+                "label": "endpoint",
                 "placeholder": ""
               }
             }

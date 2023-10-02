@@ -27,17 +27,18 @@ export async function generateMetadata({params: {locale}}: Props): Promise<Metad
 
   const client = createClient()
 
-  const page = await client.getSingle("settings")
+  const settings = await client.getSingle("settings")
 
 
 
   const messages = await getMessages(locale);
   const t = createTranslator({locale, messages});
   return {
-    title: page?.data.site_title || t('LocaleLayout.title'),
-    description:page?.data.meta_description || "Description default",
+    metadataBase: new URL("http://localhost:3000"),
+    title: settings.data.site_title || t('LocaleLayout.title'),
+    description:settings.data.meta_description || "Description default",
     openGraph: {
-      images: [page?.data.og_image.url || ""],
+      images: [settings.data.og_image.url || ""],
     },
   }
 }

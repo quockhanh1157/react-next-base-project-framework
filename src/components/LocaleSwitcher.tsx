@@ -10,7 +10,6 @@ export default function LocaleSwitcher() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
-
   function onSelectChange(event: ChangeEvent<HTMLSelectElement>) {
     const nextLocale = event.target.value;
     startTransition(() => {
@@ -20,7 +19,6 @@ export default function LocaleSwitcher() {
 
   return (
     <label>
-      <span>{t('label')}</span>
       <select
         defaultValue={locale}
         disabled={isPending}

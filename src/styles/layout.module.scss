@@ -1,7 +1,7 @@
 @import "mixins";
 
 .active {
-  color: black;
+  color: black !important;
 }
 
 .container {
@@ -48,6 +48,7 @@
   & > ul {
     display: flex;
     gap: 15px;
+    padding: 0;
   }
 
   & > ul > li {
@@ -55,7 +56,7 @@
     & > a {
       color: white;
       text-decoration: none;
-      &:hover, :focus {
+      &:hover, :focus,:current {
         color: black;
       }
     }
@@ -91,7 +92,19 @@
 
       .header_input:checked + nav {
         display: block;
+
       }
+    }
+    &> div:last-child {
+      &> div:first-child{
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+  .header_nav{
+    & > ul {
+      margin: 0;
     }
   }
 }

@@ -1,12 +1,25 @@
-'use client'
-import styles from '../../styles/page.module.css';
-import {useTranslations} from "next-intl";
+import { Metadata } from "next";
+import { SliceZone } from "@prismicio/react";
 
-export default function IndexPage() {
-  const t = useTranslations('Index')
-  return (
-    <main className={styles.main}>
-      {t('title')}
-    </main>
-  );
+import { createClient } from "@/prismicio";
+import { components } from "@/slices";
+
+export default async function Page() {
+  const client = createClient();
+  const page = await client.getSingle("homepage");
+
+  return <>worked</>
+  // return <SliceZone slices={page.data.slices} components={components} />;
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const client = createClient();
+  const page = await client.getSingle("homepage");
+
+  console.log(page,'===1111')
+
+  return {
+    title: page.data.meta_title || "",
+    description: page.data.meta_description || "",
+  };
 }

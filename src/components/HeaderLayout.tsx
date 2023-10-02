@@ -1,42 +1,46 @@
 'use client'
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Link from "next/link";
-import {usePathname} from "next/navigation";
-import Image from "next/image";
-import LocaleSwitcher from "@/components/LocaleSwitcher";
 import {useLocale} from "next-intl";
 import styles from '@/styles/layout.module.scss'
+import {createClient} from "@/prismicio";
+import NavBar from "@/components/NavBar";
+import LocaleSwitcher from "@/components/LocaleSwitcher";
 
 const HeaderLayout = () => {
-  const pathname = usePathname()
   const locale = useLocale()
+  const [settings, setSettings] = useState<any>()
+
+  const client = createClient()
+  useEffect(() => {
+    client.getSingle('settings').then((res) => setSettings(res)).catch()
+  }, [])
 
   return (
     <header className={styles.header}>
       <div className={`${styles.header_container} ${styles.container}`}>
         <div>
-          <label><Link href={'/'}>
-            <Image className={styles.header_icon} width={50} height={50} src={'/icon-react.png'} alt={'icon'}/>
+          <label><Link href={`/${locale}`}>
+            {/*<Image className={styles.header_icon} width={50} height={50} src={'/icon-react.png'} alt={'icon'}/>*/}
+            {settings ? settings.data.site_title : "Data Mau"}
           </Link></label>
 
           <input className={styles.header_input} type={`checkbox`} id={'box'}/>
           <nav className={styles.header_nav}>
             <ul>
-              <li><Link className={pathname == `/${locale}/facebook` ? styles.active : ``} href={`/${locale}/facebook`}>Facebook</Link>
-              </li>
-              <li><Link className={pathname == `/${locale}/tiktok` ? styles.active : ``} href={`/${locale}/tiktok`}>Tiktok</Link></li>
-              <li><Link className={pathname == `/${locale}/speak` ? styles.active : ``} href={`/${locale}/speak`}>Speak</Link></li>
-              <li><Link className={pathname == `/${locale}/test-found` ? styles.active : ``} href={`/${locale}/test-found`}>Test Found</Link></li>
-              <LocaleSwitcher/>
+              {settings && <NavBar navigation={settings.data.navigation}/>}
             </ul>
           </nav>
         </div>
         <div>
-          <label className={styles.header_box} htmlFor={'box'}>
-            <hr/>
-            <hr/>
-            <hr/>
-          </label>
+          <div>
+            <label className={styles.header_box} htmlFor={'box'}>
+              <hr/>
+              <hr/>
+              <hr/>
+            </label>
+          </div>
+          <LocaleSwitcher/>
         </div>
 
       </div>
