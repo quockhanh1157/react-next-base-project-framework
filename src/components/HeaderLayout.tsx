@@ -17,32 +17,39 @@ const HeaderLayout = () => {
   }, [])
 
   return (
-    <header className={styles.header}>
-      <div className={`${styles.header_container} ${styles.container}`}>
-        <div>
-          <label><Link href={`/${locale}`}>
-            {/*<Image className={styles.header_icon} width={50} height={50} src={'/icon-react.png'} alt={'icon'}/>*/}
-            {settings ? settings.data.site_title : "Data Mau"}
-          </Link></label>
-
-          <input className={styles.header_input} type={`checkbox`} id={'box'}/>
-          <nav className={styles.header_nav}>
-            <ul>
-              {settings && <NavBar navigation={settings.data.navigation}/>}
-            </ul>
-          </nav>
-        </div>
-        <div>
-          <div>
-            <label className={styles.header_box} htmlFor={'box'}>
-              <hr/>
-              <hr/>
-              <hr/>
-            </label>
-          </div>
-          <LocaleSwitcher/>
-        </div>
-
+    // <header className={styles.header}>
+    //   <div className={`${styles.header_container} ${styles.container}`}>
+    //     <div>
+    //       <label><Link href={`/${locale}`}>
+    //         {/*<Image className={styles.header_icon} width={50} height={50} src={'/icon-react.png'} alt={'icon'}/>*/}
+    //         {settings ? settings.data.site_title : "Data Mau"}
+    //       </Link></label>
+    //
+    //       <input className={styles.header_input} type={`checkbox`} id={'box'}/>
+    //       <nav className={styles.header_nav}>
+    //         <ul>
+    //           {settings && <NavBar navigation={settings.data.navigation}/>}
+    //         </ul>
+    //       </nav>
+    //     </div>
+    //     <div>
+    //       <div>
+    //         <label className={styles.header_box} htmlFor={'box'}>
+    //           <hr/>
+    //           <hr/>
+    //           <hr/>
+    //         </label>
+    //       </div>
+    //       <LocaleSwitcher/>
+    //     </div>
+    //
+    //   </div>
+    // </header>
+    <header>
+      <div className={'container mx-auto mobile:px-1'}>
+        <h1 className="text-3xl font-bold mobile:text-amber-400 tablet:text-amber-50 desktop:text-zinc-800">
+          Hello world!
+        </h1>
       </div>
     </header>
   );

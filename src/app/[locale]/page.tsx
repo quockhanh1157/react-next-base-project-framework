@@ -1,8 +1,6 @@
 import { Metadata } from "next";
-import { SliceZone } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
-import { components } from "@/slices";
 
 export default async function Page() {
   const client = createClient();
@@ -15,8 +13,6 @@ export default async function Page() {
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
   const page = await client.getSingle("homepage");
-
-  console.log(page,'===1111')
 
   return {
     title: page.data.meta_title || "",
