@@ -242,9 +242,22 @@ export type HeroSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * No image variation for Hero Slice
+ *
+ * - **API ID**: `noImage`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroSliceNoImage = prismic.SharedSliceVariation<
+  "noImage",
+  Record<string, never>,
+  never
+>;
+
+/**
  * Primary content in *Hero → Primary*
  */
-export interface HeroSliceNoImagePrimary {
+export interface HeroSliceHorizontalPrimary {
   /**
    * Heading field in *Hero → Primary*
    *
@@ -284,25 +297,38 @@ export interface HeroSliceNoImagePrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   button_link: prismic.LinkField;
+
+  /**
+   * Image field in *Hero → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
 }
 
 /**
- * No image variation for Hero Slice
+ * Horizontal variation for Hero Slice
  *
- * - **API ID**: `noImage`
+ * - **API ID**: `horizontal`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type HeroSliceNoImage = prismic.SharedSliceVariation<
-  "noImage",
-  Simplify<HeroSliceNoImagePrimary>,
+export type HeroSliceHorizontal = prismic.SharedSliceVariation<
+  "horizontal",
+  Simplify<HeroSliceHorizontalPrimary>,
   never
 >;
 
 /**
  * Slice variation for *Hero*
  */
-type HeroSliceVariation = HeroSliceDefault | HeroSliceNoImage;
+type HeroSliceVariation =
+  | HeroSliceDefault
+  | HeroSliceNoImage
+  | HeroSliceHorizontal;
 
 /**
  * Hero Shared Slice
@@ -332,10 +358,11 @@ declare module "@prismicio/client" {
       AllDocumentTypes,
       HeroSlice,
       HeroSliceDefaultPrimary,
-      HeroSliceNoImagePrimary,
+      HeroSliceHorizontalPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceNoImage,
+      HeroSliceHorizontal,
     };
   }
 }

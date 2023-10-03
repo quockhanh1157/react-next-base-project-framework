@@ -63,6 +63,16 @@
       "version": "initial",
       "description": "Default",
       "imageUrl": "",
+      "primary": {},
+      "items": {}
+    },
+    {
+      "id": "horizontal",
+      "name": "Horizontal",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
       "primary": {
         "heading": {
           "type": "StructuredText",
@@ -95,6 +105,14 @@
             "label": "Button Link",
             "placeholder": "",
             "select": null
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
           }
         }
       },
