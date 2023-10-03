@@ -46,7 +46,7 @@ const HeaderLayout = () => {
     //   </div>
     // </header>
     <header>
-      <div className={'container mx-auto mobile:px-1'}>
+      <div className={`container mx-auto mobile:px-1 ${styles.header}`}>
         <h1 className="text-3xl font-bold mobile:text-amber-400 tablet:text-amber-50 desktop:text-zinc-800">
           Hello world!
         </h1>
