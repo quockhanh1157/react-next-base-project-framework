@@ -1,14 +1,14 @@
-import {Inter} from 'next/font/google';
-import {notFound} from 'next/navigation';
-import {createTranslator, NextIntlClientProvider} from 'next-intl';
-import {ReactNode} from 'react';
+import { Inter } from "next/font/google";
+import { notFound } from "next/navigation";
+import { createTranslator, NextIntlClientProvider } from "next-intl";
+import { ReactNode } from "react";
 import HeaderLayout from "@/components/HeaderLayout";
 import FooterLayout from "@/components/FooterLayout";
-import styles from '@/styles/layout.module.scss'
-import {createClient} from "@/prismicio";
-import {Metadata} from "next";
+import styles from "@/styles/layout.module.scss";
+import { createClient } from "@/prismicio";
+import { Metadata } from "next";
 
-const inter = Inter({subsets: ['latin']});
+const inter = Inter({ subsets: ["latin"] });
 
 type Props = {
   children: ReactNode;
@@ -23,41 +23,38 @@ async function getMessages(locale: string) {
   }
 }
 
-export async function generateMetadata({params: {locale}}: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params: { locale },
+}: Props): Promise<Metadata> {
+  const client = createClient();
 
-  const client = createClient()
-
-  const settings = await client.getSingle("settings")
-
-
+  const settings = await client.getSingle("settings");
 
   const messages = await getMessages(locale);
-  const t = createTranslator({locale, messages});
+  const t = createTranslator({ locale, messages });
   return {
     metadataBase: new URL("http://localhost:3000"),
-    title: settings.data.site_title || t('LocaleLayout.title'),
-    description:settings.data.meta_description || "Description default",
+    title: settings.data.site_title || t("LocaleLayout.title"),
+    description: settings.data.meta_description || "Description default",
     openGraph: {
       images: [settings.data.og_image.url || ""],
     },
-  }
+  };
 }
 
 export default async function LocaleLayout({
   children,
-  params: {locale}
+  params: { locale },
 }: Props) {
   const messages = await getMessages(locale);
 
   return (
     <html lang={locale} suppressHydrationWarning={true}>
-      <body style={{margin: 0}}>
+      <body className="m-auto">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <HeaderLayout/>
-          <div className={styles.container}>
-            {children}
-          </div>
-          <FooterLayout/>
+          <HeaderLayout />
+          <div className={"mx-auto w-full max-w-6xl"}>{children}</div>
+          <FooterLayout />
         </NextIntlClientProvider>
       </body>
     </html>

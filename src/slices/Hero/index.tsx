@@ -40,7 +40,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           data-slice-type={slice.slice_type}
           data-slice-variation={slice.variation}
         >
-          <div className="grid grid-cols-1 place-items-center text-center">
+          <div className="grid grid-cols-1 place-items-center text-center border">
             <PrismicRichText
               field={slice.primary.heading}
               components={components}
@@ -58,6 +58,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
             <PrismicNextImage
               field={slice.primary.image}
               className="drop-shadow-xl max-w-4xl w-full"
+              alt=""
             />
           </div>
         </Bounded>
@@ -68,8 +69,8 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           data-slice-type={slice.slice_type}
           data-slice-variation={slice.variation}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 place-items-center">
-            <div className="grid grid-rows-1-[1fr,auto,auto] h-fit">
+          <div className="grid grid-cols-1 md:grid-cols-2 place-items-center border">
+            <div className="grid grid-rows-1-[1fr,auto,auto] mobile:place-items-center mobile:text-center h-fit">
               <PrismicRichText
                 field={slice.primary.heading}
                 components={components}
@@ -88,6 +89,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
             <PrismicNextImage
               field={slice.primary.image}
               className="drop-shadow-xl max-w-4xl w-full"
+              alt=""
             />
           </div>
         </Bounded>

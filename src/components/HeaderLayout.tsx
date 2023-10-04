@@ -1,54 +1,33 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { useLocale } from "next-intl";
+import React from "react";
 import styles from "@/styles/layout.module.scss";
 import { createClient } from "@/prismicio";
-import NavBar from "@/components/NavBar";
-import LocaleSwitcher from "@/components/LocaleSwitcher";
+import Bounded from "@/components/Bounded";
+import Link from "next/link";
+import { PrismicNextLink } from "@prismicio/next";
 
-const HeaderLayout = () => {
-  const locale = useLocale();
-  const [settings, setSettings] = useState<any>();
-
+const HeaderLayout = async () => {
   const client = createClient();
-  useEffect(() => {
-    client
-      .getSingle("settings")
-      .then((res) => setSettings(res))
-      .catch();
-  }, []);
 
+  const settings = await client.getSingle("settings");
   return (
-    <header className={styles.header}>
-      <div className={`${styles.header_container} ${styles.container}`}>
-        <div>
-          <label>
-            <Link href={`/${locale}`}>
-              {/*<Image className={styles.header_icon} width={50} height={50} src={'/icon-react.png'} alt={'icon'}/>*/}
-              {settings ? settings.data.site_title : "Data Mau"}
-            </Link>
-          </label>
-
-          <input className={styles.header_input} type={`checkbox`} id={"box"} />
-          <nav className={styles.header_nav}>
-            <ul>
-              {settings && <NavBar navigation={settings.data.navigation} />}
-            </ul>
-          </nav>
-        </div>
-        <div>
-          <div>
-            <label className={styles.header_box} htmlFor={"box"}>
-              <hr />
-              <hr />
-              <hr />
-            </label>
-          </div>
-          <LocaleSwitcher />
-        </div>
+    <Bounded as={"header"} className={"py-4 mobile:py-6 tablet:py-8"}>
+      <div
+        className={
+          "flex gap-4 items-center justify-between flex-row mobile:flex-col"
+        }
+      >
+        <Link href={"/"}>{settings.data.site_title}</Link>
+        <nav>
+          <ul className="flex">
+            {settings.data.navigation.map(({ link, label }) => (
+              <li key={label} className={" p-3"}>
+                <PrismicNextLink field={link}>{label}</PrismicNextLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
-    </header>
+    </Bounded>
   );
 };
 

@@ -96,14 +96,14 @@ export interface SettingsDocumentDataNavigationItem {
   label: prismic.KeyTextField;
 
   /**
-   * endpoint field in *Settings → Navigation*
+   * Link field in *Settings → Navigation*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: settings.navigation[].endpoint
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **API ID Path**: settings.navigation[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  endpoint: prismic.KeyTextField;
+  link: prismic.LinkField;
 }
 
 /**

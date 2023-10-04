@@ -40,11 +40,12 @@
                 "placeholder": ""
               }
             },
-            "endpoint": {
-              "type": "Text",
+            "link": {
+              "type": "Link",
               "config": {
-                "label": "endpoint",
-                "placeholder": ""
+                "label": "Link",
+                "placeholder": "",
+                "select": null
               }
             }
           }
