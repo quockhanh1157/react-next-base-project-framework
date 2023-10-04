@@ -18,6 +18,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "testimonial": {
+              "type": "SharedSlice"
+            },
+            "feature": {
+              "type": "SharedSlice"
+            },
             "hero": {
               "type": "SharedSlice"
             }

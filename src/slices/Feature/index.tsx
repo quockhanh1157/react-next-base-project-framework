@@ -5,7 +5,6 @@ import {
   SliceComponentProps,
 } from "@prismicio/react";
 import Bounded from "@/components/Bounded";
-import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 
 const components: JSXMapSerializer = {
