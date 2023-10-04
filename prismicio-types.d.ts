@@ -174,6 +174,86 @@ export type SettingsDocument<Lang extends string = string> =
 export type AllDocumentTypes = HomepageDocument | SettingsDocument;
 
 /**
+ * Primary content in *Feature → Primary*
+ */
+export interface FeatureSliceDefaultPrimary {
+  /**
+   * Heading field in *Feature → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+}
+
+/**
+ * Primary content in *Feature → Items*
+ */
+export interface FeatureSliceDefaultItem {
+  /**
+   * Icon field in *Feature → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature.items[].icon
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  icon: prismic.SelectField<"calendar" | "bargraph" | "hourglass" | "clover">;
+
+  /**
+   * Title field in *Feature → Items*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature.items[].title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField;
+
+  /**
+   * Description field in *Feature → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature.items[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Feature Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FeatureSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FeatureSliceDefaultPrimary>,
+  Simplify<FeatureSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Feature*
+ */
+type FeatureSliceVariation = FeatureSliceDefault;
+
+/**
+ * Feature Shared Slice
+ *
+ * - **API ID**: `feature`
+ * - **Description**: Feature
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FeatureSlice = prismic.SharedSlice<
+  "feature",
+  FeatureSliceVariation
+>;
+
+/**
  * Primary content in *Hero → Primary*
  */
 export interface HeroSliceDefaultPrimary {
@@ -356,6 +436,11 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
       AllDocumentTypes,
+      FeatureSlice,
+      FeatureSliceDefaultPrimary,
+      FeatureSliceDefaultItem,
+      FeatureSliceVariation,
+      FeatureSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceHorizontalPrimary,

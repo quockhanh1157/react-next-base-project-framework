@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "@/styles/layout.module.scss";
 import { createClient } from "@/prismicio";
 import Bounded from "@/components/Bounded";
 import Link from "next/link";
