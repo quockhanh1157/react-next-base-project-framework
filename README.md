@@ -2,12 +2,16 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-Add sass
+install next-intl
 
 ```bash
-npm i sass
+npm install next-intl
 ```
 
-## Create layout
+## Create folder messages and change folder app
 
-Layout included layout.tsx and not-found.tsx
+### 1. change default locale /en
+#### when click to home, default open /en
+### 2. move layout to [locale]
+### 3. create not-found show page error
+### 4. dynamic router (unfulfilled)

@@ -1,41 +1,34 @@
-'use client'
-import React from 'react';
-import styles from '@/styles/layout.module.scss'
+import React from "react";
+import { createClient } from "@/prismicio";
+import Bounded from "@/components/Bounded";
 import Link from "next/link";
-import {usePathname} from "next/navigation";
-import Image from "next/image";
+import { PrismicNextLink } from "@prismicio/next";
 
-const HeaderLayout = () => {
-  const pathname = usePathname()
+const HeaderLayout = async () => {
+  const client = createClient();
 
+  const settings = await client.getSingle("settings");
+
+  console.log(settings.data.navigation);
   return (
-    <header className={styles.header}>
-      <div className={`${styles.header_container} ${styles.container}`}>
-        <div>
-          <label><Link href={'/'}>
-            <Image className={styles.header_icon} width={50} height={50} src={'/icon-react.png'} alt={'icon'}/>
-          </Link></label>
-
-          <input className={styles.header_input} type={"checkbox"} id={'box'}/>
-          <nav className={styles.header_nav}>
-            <ul>
-              <li><Link className={pathname == "/facebook" ? styles.active : ""} href={'/facebook'}>Facebook</Link>
+    <Bounded as={"header"} className={"py-4 mobile:py-6 tablet:py-8"}>
+      <div
+        className={
+          "flex gap-4 items-center justify-between flex-row mobile:flex-col"
+        }
+      >
+        <Link href={"/"}>{settings.data.site_title}</Link>
+        <nav>
+          <ul className="flex">
+            {settings.data.navigation.map(({ link, label }) => (
+              <li key={label} className={" p-3"}>
+                <PrismicNextLink field={link}>{label}</PrismicNextLink>
               </li>
-              <li><Link className={pathname == "/tiktok" ? styles.active : ""} href={'/tiktok'}>Tiktok</Link></li>
-              <li><Link className={pathname == "/speak" ? styles.active : ""} href={'/speak'}>Speak</Link></li>
-              <li><Link className={pathname == "/test-found" ? styles.active : ""} href={'/test-found'}>Test Found</Link></li>
-            </ul>
-          </nav>
-        </div>
-        <div>
-          <label className={styles.header_box} htmlFor={'box'}>
-            <hr/>
-            <hr/>
-            <hr/>
-          </label>
-        </div>
+            ))}
+          </ul>
+        </nav>
       </div>
-    </header>
+    </Bounded>
   );
 };
 
