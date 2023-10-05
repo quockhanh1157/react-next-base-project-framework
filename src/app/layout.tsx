@@ -17,7 +17,6 @@ export async function generateMetadata({}): Promise<Metadata> {
 
   const settings = await client.getSingle("settings");
   return {
-    metadataBase: new URL("http://localhost:3000"),
     title: settings.data.site_title,
     description: settings.data.meta_description || "Description default",
     openGraph: {
