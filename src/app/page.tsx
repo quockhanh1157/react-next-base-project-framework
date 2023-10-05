@@ -1,6 +1,22 @@
-import {redirect} from 'next/navigation';
+import { Metadata } from "next";
+import { SliceZone } from "@prismicio/react";
 
-// This page only renders when the app is built statically (output: 'export')
-export default function RootPage() {
-  redirect('/en');
+import { createClient } from "@/prismicio";
+import { components } from "@/slices";
+
+export default async function Page() {
+  const client = createClient();
+  const page = await client.getSingle("homepage");
+
+  return <SliceZone slices={page.data.slices} components={components} />;
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const client = createClient();
+  const page = await client.getSingle("homepage");
+
+  return {
+    title: page.data.meta_title || "",
+    description: page.data.meta_description || "",
+  };
 }

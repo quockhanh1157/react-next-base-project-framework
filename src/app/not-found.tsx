@@ -1,17 +1,13 @@
 'use client';
 
-import Error from 'next/error';
+// Note that `app/[locale]/[...rest]/page.tsx`
+// is necessary for this page to render.
 
-// Render the default Next.js 404 page when a route
-// is requested that doesn't match the middleware and
-// therefore doesn't have a locale associated with it.
+export default function NotFoundPage() {
 
-export default function NotFound() {
   return (
-    <html lang="en">
-      <body>
-        <Error statusCode={404} />
-      </body>
-    </html>
+    <div>
+      <p>NotFoundPage</p>
+    </div>
   );
 }

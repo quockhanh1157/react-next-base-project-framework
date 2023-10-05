@@ -8,6 +8,8 @@ const HeaderLayout = async () => {
   const client = createClient();
 
   const settings = await client.getSingle("settings");
+
+  console.log(settings.data.navigation);
   return (
     <Bounded as={"header"} className={"py-4 mobile:py-6 tablet:py-8"}>
       <div
