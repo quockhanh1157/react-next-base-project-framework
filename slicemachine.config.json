@@ -1,6 +1,0 @@
-{
-  "repositoryName": "cloudy-eclair-i2ow4n",
-  "adapter": "@slicemachine/adapter-next",
-  "libraries": ["./src/slices"],
-  "localSliceSimulatorURL": "http://localhost:3000/slice-simulator"
-}

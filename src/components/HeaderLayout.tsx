@@ -1,8 +1,6 @@
 import React from "react";
-import { createClient } from "@/prismicio";
 import Bounded from "@/components/Bounded";
 import Link from "next/link";
-import { PrismicNextLink } from "@prismicio/next";
 
 const HeaderLayout = async () => {
   const settings = ["feature", "about"];
