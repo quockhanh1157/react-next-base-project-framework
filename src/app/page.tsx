@@ -1,18 +1,22 @@
 import { Metadata } from "next";
-import clsx from "clsx";
-import React from "react";
+import { SliceZone } from "@prismicio/react";
+
+import { createClient } from "@/prismicio";
+import { components } from "@/slices";
 
 export default async function Page() {
-  return (
-    <div className={clsx("px-4 py-10 mobile:py-14 mobile:px-6 tablet:py-16")}>
-      <div className="mx-auto w-full max-w-6xl">Home</div>
-    </div>
-  );
+  const client = createClient();
+  const page = await client.getSingle("homepage");
+
+  return <SliceZone slices={page.data.slices} components={components} />;
 }
 
 export async function generateMetadata(): Promise<Metadata> {
+  const client = createClient();
+  const page = await client.getSingle("homepage");
+
   return {
-    title: "",
-    description: "",
+    title: page.data.meta_title,
+    description: page.data.meta_description,
   };
 }
