@@ -1,9 +1,13 @@
 import React from "react";
+import { createClient } from "@/prismicio";
 import Bounded from "@/components/Bounded";
 import Link from "next/link";
+import { PrismicNextLink } from "@prismicio/next";
 
 const HeaderLayout = async () => {
-  const settings = ["feature", "about"];
+  const client = createClient();
+
+  const settings = await client.getSingle("settings");
 
   return (
     <Bounded as={"header"} className={"py-4 mobile:py-6 tablet:py-8"}>
@@ -12,12 +16,12 @@ const HeaderLayout = async () => {
           "flex gap-4 items-center justify-between flex-row mobile:flex-col"
         }
       >
-        <Link href={"/"}>Home</Link>
+        <Link href={"/"}>{settings.data.site_title}</Link>
         <nav>
           <ul className="flex">
-            {settings.map((i) => (
-              <li className={"mr-3"} key={i}>
-                <Link href={`/${i}`}>{i}</Link>
+            {settings.data.navigation.map(({ link, label }) => (
+              <li key={label} className={" p-3"}>
+                <PrismicNextLink field={link}>{label}</PrismicNextLink>
               </li>
             ))}
           </ul>
