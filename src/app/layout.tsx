@@ -31,7 +31,7 @@ export default async function LocaleLayout({ children }: Props) {
     <html lang="en" suppressHydrationWarning={true}>
       <body className="m-auto">
         <HeaderLayout />
-        <div className={"mx-auto w-full max-w-6xl"}>{children}</div>
+        <div className={"mx-auto w-full max-w-6xl min-h-screen"}>{children}</div>
         <FooterLayout />
       </body>
     </html>

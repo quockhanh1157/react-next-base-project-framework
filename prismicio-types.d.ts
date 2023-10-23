@@ -4,6 +4,164 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Item in *Footer → Follow*
+ */
+export interface FooterDocumentDataFollowItem {
+  /**
+   * Link field in *Footer → Follow*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.follow[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Label field in *Footer → Follow*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.follow[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Icon field in *Footer → Follow*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.follow[].icon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  icon: prismic.ImageField<never>;
+}
+
+/**
+ * Item in *Footer → Navigation*
+ */
+export interface FooterDocumentDataNavigationItem {
+  /**
+   * Link field in *Footer → Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.navigation[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Label field in *Footer → Navigation*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.navigation[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+}
+
+/**
+ * Content for Footer documents
+ */
+interface FooterDocumentData {
+  /**
+   * Author field in *Footer*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.author
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  author: prismic.RichTextField;
+
+  /**
+   * Description field in *Footer*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Address field in *Footer*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.address
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  address: prismic.RichTextField;
+
+  /**
+   * FollowText field in *Footer*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.followtext
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  followtext: prismic.KeyTextField;
+
+  /**
+   * Follow field in *Footer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.follow[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  follow: prismic.GroupField<Simplify<FooterDocumentDataFollowItem>>;
+
+  /**
+   * NavigationText field in *Footer*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.navigationtext
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  navigationtext: prismic.KeyTextField;
+
+  /**
+   * Navigation field in *Footer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.navigation[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  navigation: prismic.GroupField<Simplify<FooterDocumentDataNavigationItem>>;
+}
+
+/**
+ * Footer document from Prismic
+ *
+ * - **API ID**: `footer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FooterDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<FooterDocumentData>,
+    "footer",
+    Lang
+  >;
+
 type HomepageDocumentDataSlicesSlice =
   | CallToActionSlice
   | TextWidthImageSlice
@@ -87,6 +245,7 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | RecuitmentSlice
   | HeroSlice
   | TextWidthImageSlice
   | TestimonialSlice
@@ -152,6 +311,105 @@ interface PageDocumentData {
  */
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
+
+type RecurimentpageDocumentDataSlicesSlice = never;
+
+/**
+ * Content for RecurimentPage documents
+ */
+interface RecurimentpageDocumentData {
+  /**
+   * Image field in *RecurimentPage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: recurimentpage.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *RecurimentPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: recurimentpage.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *RecurimentPage*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: recurimentpage.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Slice Zone field in *RecurimentPage*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: recurimentpage.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<RecurimentpageDocumentDataSlicesSlice>
+  /**
+   * Meta Description field in *RecurimentPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: recurimentpage.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *RecurimentPage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: recurimentpage.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *RecurimentPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: recurimentpage.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * RecurimentPage document from Prismic
+ *
+ * - **API ID**: `recurimentpage`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type RecurimentpageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<RecurimentpageDocumentData>,
+    "recurimentpage",
+    Lang
+  >;
 
 /**
  * Item in *Settings → Navigation*
@@ -243,6 +501,8 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
+type TestimonialDocumentDataSlicesSlice = RecuitmentSlice;
+
 /**
  * Content for Testimonial documents
  */
@@ -290,6 +550,17 @@ interface TestimonialDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   avatar: prismic.ImageField<never>;
+
+  /**
+   * Slice Zone field in *Testimonial*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<TestimonialDocumentDataSlicesSlice>;
 }
 
 /**
@@ -309,8 +580,10 @@ export type TestimonialDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | FooterDocument
   | HomepageDocument
   | PageDocument
+  | RecurimentpageDocument
   | SettingsDocument
   | TestimonialDocument;
 
@@ -636,6 +909,91 @@ type HeroSliceVariation =
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Primary content in *Recuitment → Primary*
+ */
+export interface RecuitmentSliceDefaultPrimary {
+  /**
+   * Title field in *Recuitment → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: recuitment.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField;
+
+  /**
+   * Image field in *Recuitment → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: recuitment.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Description field in *Recuitment → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: recuitment.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Button Link field in *Recuitment → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: recuitment.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+
+  /**
+   * Button Text field in *Recuitment → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: recuitment.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Recuitment Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type RecuitmentSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<RecuitmentSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Recuitment*
+ */
+type RecuitmentSliceVariation = RecuitmentSliceDefault;
+
+/**
+ * Recuitment Shared Slice
+ *
+ * - **API ID**: `recuitment`
+ * - **Description**: Recuitment
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type RecuitmentSlice = prismic.SharedSlice<
+  "recuitment",
+  RecuitmentSliceVariation
+>;
+
+/**
  * Primary content in *Testimonial → Primary*
  */
 export interface TestimonialSliceDefaultPrimary {
@@ -820,17 +1178,25 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      FooterDocument,
+      FooterDocumentData,
+      FooterDocumentDataFollowItem,
+      FooterDocumentDataNavigationItem,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      RecurimentpageDocument,
+      RecurimentpageDocumentData,
+      RecurimentpageDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
       TestimonialDocument,
       TestimonialDocumentData,
+      TestimonialDocumentDataSlicesSlice,
       AllDocumentTypes,
       CallToActionSlice,
       CallToActionSliceDefaultPrimary,
@@ -848,6 +1214,10 @@ declare module "@prismicio/client" {
       HeroSliceDefault,
       HeroSliceNoImage,
       HeroSliceHorizontal,
+      RecuitmentSlice,
+      RecuitmentSliceDefaultPrimary,
+      RecuitmentSliceVariation,
+      RecuitmentSliceDefault,
       TestimonialSlice,
       TestimonialSliceDefaultPrimary,
       TestimonialSliceDefaultItem,
