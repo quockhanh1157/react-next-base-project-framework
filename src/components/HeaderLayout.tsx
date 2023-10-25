@@ -2,7 +2,7 @@ import React from "react";
 import { createClient } from "@/prismicio";
 import Bounded from "@/components/Bounded";
 import Link from "next/link";
-import { PrismicNextLink } from "@prismicio/next";
+import { PrismicNextLink ,PrismicNextImage} from "@prismicio/next";
 
 const HeaderLayout = async () => {
   const client = createClient();
@@ -16,7 +16,7 @@ const HeaderLayout = async () => {
           "flex gap-4 items-center justify-between flex-row mobile:flex-col"
         }
       >
-        <Link href={"/"}>{settings.data.site_title}</Link>
+        <Link href={'/'}><PrismicNextImage field={settings.data.logo} alt={''}/></Link>
         <nav>
           <ul className="flex">
             {settings.data.navigation.map(({ link, label }) => (
